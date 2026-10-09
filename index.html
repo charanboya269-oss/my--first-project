@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Dream Portfolio</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #0b1020;
+  color: white;
+}
+
+header {
+  padding: 20px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #11182b;
+  position: sticky;
+  top: 0;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: bold;
+  color: #c4b5fd;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+nav a:hover {
+  color: #f0abfc;
+}
+
+.hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  padding: 70px 10%;
+  flex-wrap: wrap;
+  background: linear-gradient(135deg, #11182b, #241044);
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+.hero h1 {
+  font-size: clamp(38px, 6vw, 65px);
+  line-height: 1.2;
+  margin: 20px 0;
+}
+
+.hero h1 span {
+  color: #d8b4fe;
+}
+
+.hero p {
+  color: #cbd5e1;
+  line-height: 1.8;
+  margin-bottom: 25px;
+}
+
+.btn {
+  display: inline-block;
+  background: linear-gradient(90deg, #8b5cf6, #ec4899);
+  padding: 13px 24px;
+  border-radius: 30px;
+  color: white;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  margin: 5px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px #a855f755;
+}
+
+.profile {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c4b5fd, #f0abfc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+  box-shadow: 0 0 60px #a855f755;
+  animation: float 3s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+section {
+  padding: 80px 10%;
+}
+
+.title {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.title span {
+  color: #c4b5fd;
+}
+
+.about {
+  text-align: center;
+  max-width: 800px;
+  margin: auto;
+  color: #cbd5e1;
+  line-height: 1.9;
+}
+
+.skills-grid,
+.projects-grid,
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 22px;
+}
+
+.card {
+  background: #151e33;
+  border: 1px solid #303b56;
+  padding: 28px;
+  border-radius: 18px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: #c4b5fd;
+}
+
+.card .emoji {
+  font-size: 38px;
+  margin-bottom: 15px;
+}
+
+.card h3 {
+  margin-bottom: 12px;
+  color: #e9d5ff;
+}
+
+.card p {
+  color: #bdc8da;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.skill-bar {
+  height: 8px;
+  background: #303b56;
+  border-radius: 10px;
+  margin-top: 15px;
+  overflow: hidden;
+}
+
+.skill-level {
+  height: 100%;
+  background: linear-gradient(90deg, #8b5cf6, #f0abfc);
+  border-radius: 10px;
+}
+
+.stats {
+  text-align: center;
+  margin-top: 35px;
+}
+
+.stat-number {
+  font-size: 35px;
+  color: #d8b4fe;
+  font-weight: bold;
+}
+
+.contact {
+  text-align: center;
+  background: #11182b;
+}
+
+.contact p {
+  color: #cbd5e1;
+  margin-bottom: 25px;
+}
+
+form {
+  max-width: 550px;
+  margin: auto;
+  display: grid;
+  gap: 15px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #38445e;
+  background: #0b1020;
+  color: white;
+  border-radius: 10px;
+  font: inherit;
+}
+
+textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #94a3b8;
+  background: #080c18;
+}
+
+#topButton {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  background: #a78bfa;
+  color: #111;
+  font-size: 22px;
+  cursor: pointer;
+  display: none;
+}
+
+@media (max-width: 650px) {
+  header {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  nav a {
+    margin: 0;
+    font-size: 13px;
+  }
+
+  .hero {
+    text-align: center;
+  }
+
+  .profile {
+    width: 190px;
+    height: 190px;
+    font-size: 75px;
+  }
+
+  section {
+    padding: 60px 6%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">MyPortfolio ✨</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <p>✨ WELCOME TO MY CREATIVE WORLD</p>
+    <h1>Hello, I'm <span id="personName">Your Name</span></h1>
+    <h2>Future Developer 💻</h2>
+    <p>
+      I am a passionate student who loves technology,
+      creative design and building amazing digital experiences.
+      This is my personal portfolio website.
+    </p>
+    <a class="btn" href="#projects">Explore My Work</a>
+    <a class="btn" href="#contact">Contact Me</a>
+  </div>
+
+  <div class="profile" aria-label="Creative developer illustration">
+    👩🏻‍💻
+  </div>
+</section>
+
+<section id="about">
+  <h2 class="title">About <span>Me</span></h2>
+  <div class="about">
+    <p>
+      Hello! Welcome to my personal website. I am learning
+      programming and exploring the exciting world of technology.
+      My goal is to become a skilled developer and create useful
+      applications that solve real-world problems.
+    </p>
+    <p>
+      I enjoy learning new skills, solving challenges,
+      designing websites and turning creative ideas into reality.
+      Every day is a new opportunity to improve myself.
+    </p>
+  </div>
+
+  <div class="stats">
+    <div class="card">
+      <div class="stat-number" data-target="5">0</div>
+      <p>Learning Goals</p>
+    </div>
+    <div class="card">
+      <div class="stat-number" data-target="3">0</div>
+      <p>Project Ideas</p>
+    </div>
+    <div class="card">
+      <div class="stat-number" data-target="100">0</div>
+      <p>Percent Motivation</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2 class="title">My <span>Skills</span></h2>
+
+  <div class="skills-grid">
+    <div class="card">
+      <div class="emoji">🌐</div>
+      <h3>HTML</h3>
+      <p>Creating the structure of websites.</p>
+      <div class="skill-bar">
+        <div class="skill-level" style="width:80%"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🎨</div>
+      <h3>CSS</h3>
+      <p>Designing colorful and responsive layouts.</p>
+      <div class="skill-bar">
+        <div class="skill-level" style="width:65%"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="emoji">⚡</div>
+      <h3>JavaScript</h3>
+      <p>Making websites interactive and dynamic.</p>
+      <div class="skill-bar">
+        <div class="skill-level" style="width:40%"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="emoji">☕</div>
+      <h3>Java</h3>
+      <p>Learning programming fundamentals and logic.</p>
+      <div class="skill-bar">
+        <div class="skill-level" style="width:35%"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2 class="title">My <span>Projects</span></h2>
+
+  <div class="projects-grid">
+    <div class="card">
+      <div class="emoji">💖</div>
+      <h3>Personal Website</h3>
+      <p>A responsive portfolio to introduce myself and showcase my skills.</p>
+      <a class="btn" href="#contact">Know More</a>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🌦️</div>
+      <h3>Weather App</h3>
+      <p>A future project to display weather information using an API.</p>
+      <a class="btn" href="#contact">Know More</a>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🤖</div>
+      <h3>AI Assistant</h3>
+      <p>An idea for an assistant that helps users organize daily tasks.</p>
+      <a class="btn" href="#contact">Know More</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <h2 class="title">Contact <span>Me</span></h2>
+  <p>Have an idea? Let's connect and build something amazing!</p>
+
+  <form id="contactForm">
+    <input id="name" type="text" placeholder="Your name" required>
+    <input id="email" type="email" placeholder="Your email" required>
+    <textarea id="message" placeholder="Write your message..." required></textarea>
+    <button class="btn" type="submit">Send Message ✉️</button>
+  </form>
+
+  <p id="formStatus" role="status" style="margin-top:20px"></p>
+</section>
+
+</main>
+
+<footer>
+  <p>Made with ❤️ and creativity</p>
+  <p>© <span id="year"></span> My Portfolio. Keep learning!</p>
+</footer>
+
+<button id="topButton" aria-label="Back to top">↑</button>
+
+<script>
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+const topButton = document.getElementById("topButton");
+
+window.addEventListener("scroll", function () {
+  topButton.style.display =
+    window.scrollY > 300 ? "block" : "none";
+});
+
+topButton.addEventListener("click", function () {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+
+const counters = document.querySelectorAll(".stat-number");
+
+const observer = new IntersectionObserver(function (entries) {
+  entries.forEach(function (entry) {
+    if (!entry.isIntersecting) return;
+
+    const counter = entry.target;
+    const target = Number(counter.dataset.target);
+    let current = 0;
+    const step = Math.max(1, Math.ceil(target / 50));
+
+    const timer = setInterval(function () {
+      current = Math.min(current + step, target);
+      counter.textContent = current;
+
+      if (current >= target) {
+        clearInterval(timer);
+      }
+    }, 25);
+
+    observer.unobserve(counter);
+  });
+}, { threshold: 0.5 });
+
+counters.forEach(function (counter) {
+  observer.observe(counter);
+});
+
+document.getElementById("contactForm")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+
+    document.getElementById("formStatus").textContent =
+      "Thank you, " + name +
+      "! This demo form does not send a real email.";
+
+    this.reset();
+  });
+</script>
+
+</body>
+</html>
